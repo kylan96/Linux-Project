@@ -1,10 +1,11 @@
 #!/bin/bash
 
 #----------- Establishing prices for all of our Pizza Sizes and Toppings ----------------
-meat=(Pepporini Steak Bacon Sausage )
-veggies= (  )
-cheeses= (  )
-crust= (   )
+
+#meat=(Pepporini Steak Bacon Sausage )
+#veggies= (  )
+#cheeses= (  )
+#crust= (   )
 
 
 #---------- Intro --------------
