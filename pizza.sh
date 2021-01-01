@@ -11,18 +11,18 @@ fivetop=4
 #--------- List of Cheese Toppings ----------
 #cheddar
 #mozarella
+#feta
 #--------- List of Crust Options ------------
-Thinprice=1
+thinprice=1
 stuffprice=2
-Pantossprice=1
+pantossprice=1
 #--------- Carryout or Delivery Prices -------
 deliveryprice=2
 #----------- Establishing prices for all of our Pizza Sizes ----------------
-smallprice=3
-mediumprice=5
-largeprice=7
-bigprice=9
-
+small=3
+medium=5
+large=7
+big=9
 #---------- Intro --------------
 echo "Welcome to Big Pizza! Home of the best pizza in the world!"
 sleep 3
@@ -30,18 +30,20 @@ read -p "Who do we have the pleasure of serving today? >> " name
 sleep 3
 echo "Nice to meet you $name, let's get you started."
 sleep 1 
-echo "Our Big Pizza comes with extra cheese, and a cheese filled stuff crust."
+echo "$name our Big Pizza comes with these toppings."
+#------------ List toppings for the world famous big pizza ------------------------
+echo "It also comes with extra cheese, and a cheese filled stuff crust!"
 read -p "Would you like to try our world famous Big Pizza? Please type yes or no. >> " answer
 
-if [[ $answer == yes ]] ; then 
+if [[ $answer == yes ]] ; then
+echo "Alright let's review your order $name." 
 echo "Awesome, would you like delivery or carry out?"
-
 #--------- Continuing if statement for if they want the Big Pizza. 
+
+#-------------- if they want to buid their own pizza -------------------
 else 
 echo "No problem $name. Let's get started creating your pizza. First you'll choose a size."
-fi
 read -p "Please choose small, medium, large, or big. >> " pizzasize
-if [[ $pizzasize == small ]] ; then
 #--------- Remember to create another if statement for if they choose no ----------------
 echo "Alright so that is a $pizzasize pizza for $smallprice dollars. What would you like on it $name?"
 read -p "Would you like any toppings? Please type yes or no. " answer
@@ -63,18 +65,23 @@ read -p "How many toppings would you like? >> " selection
 if [ $selection -eq 1 ] ; then
 read -p "Please type the topping you would like on your pizza. " top
 echo "Awesome so you want $top on your pizza for $onetop."
+subtotal=$(( $onetop + $pizzasize ))
 elif [ $selection -eq 2 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
 echo "Awesome so you want $top on your pizza for $twotop."
+subtotal=$(( $twotop + $pizzasize ))
 elif [ $selection -eq 3 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
 echo "Awesome so you want $top on your pizza for $threetop."
+subtotal=$(( $threetop + $pizzasize ))
 elif [ $selection -eq 4 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
 echo "Awesome so you want $top on your pizza for $fourtop."
+subtotal=$(( $fourtop + $pizzasize ))
 elif [ $selection -ge 5 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
 echo "Awesome so you want all of these toppings on your pizza."
+subtotal=$(( $fivetop + $pizzasize ))
 fi
 #---------- end of topping selection if --------------------
 echo "Now let's choose some cheeses."
@@ -102,8 +109,9 @@ fi
 echo "Alright $name last thing. Crust options!!"
 echo "Here are our different crusts."
 crustoptions=(Thin Stuffed Hand_Tossed)
-echo "Here is the list of cheese options for your pizza."
+echo "Here is the list of crust options for your pizza."
 echo "----------------"
+counter=1
 for t in ${crustoptions[@]}
 do
 echo "$counter. $t"
@@ -111,7 +119,7 @@ echo "$counter. $t"
 done
 echo "---------"
 echo""
-read -p "Please choose a number 1-3 for your cheese >> " selection
+read -p "Please choose a number 1-3 for your crust >> " selection
 if [ $selection -eq 1 ] ; then
 echo "Great you have chosen ${crustoptions[0]} for your pizza."
 elif [ $selection -eq 2 ] ; then
@@ -125,14 +133,13 @@ echo "Alright $name, you're almost done."
 read -p "Would you like your order for pickup or would you like it delivered? " order
 if [[ $order == pickup ]] ; then
 echo "Alright we will review your order to make sure it is correct. "
-subtotal=$(( $onetop + $smallprice ))
 tax=1
 total=$(( $subtotal + $tax ))
-echo "So you are getting a $pizzasize pizza with $top with $cheese cheese for a total of $subtotal dollars plus a tax of $tax dollar which would be a total of $total dollars."
+echo "So you are getting a $pizzasize pizza with $top with cheese and a crust for a total of $subtotal dollars plus a tax of $tax dollar which would be a total of $total dollars."
 else
 read -p "Please enter a delivery address " address
 echo "Alright that delivery address is $address. "
-subtotal=$(( $onetop + $smallprice + $del
+total=$(( $subtotal + $tax + $deliveryprice ))
 fi
 #-------------end of carryout or pick up if------------------------
 read -p "Would you like to place your order $name? Please type yes or no. " answer
@@ -152,18 +159,5 @@ echo "Alright, your order has been placed."
 else
 echo "Alright. Please have your cash ready!"
 fi
-
 #---------------- End of the first small if loop ---------------
-
-elif [[ $pizzasize == medium ]] ; then
-echo "Alright so that is a $pizzasize pizza. What would you like on it $name?" 
-
-elif [[ $pizzasize == large ]] ; then
-echo "Alright so that is a $pizzasize pizza. What would you like on it $name?" 
-
-elif [[ $pizzasize == big ]] ; then
-echo "Alright so that is a $pizzasize pizza. What would you like on it $name?" 
-
-else 
-echo  "$name please enter a valid option, small, medium, large, or big"
 fi
