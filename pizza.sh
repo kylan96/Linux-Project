@@ -1,44 +1,89 @@
 #!/bin/bash
 clear
+
 # Creators: Kylan Roberts, Joe Mitchell, Rachid, Byron Davis
 
 #--------- List of Topping Prices ------------
-onetop=1
-twotop=1
-threetop=3
-fourtop=3
-fivetop=4 
+onetop=0.50
+twotop=0.75
+threetop=1.00
+fourtop=1.25
+fivetop=2.00 
 #--------- List of Cheese Toppings ----------
 #cheddar
 #mozarella
 #feta
 #--------- List of Crust Options ------------
-thinprice=1
-stuffprice=2
-pantossprice=1
+thinprice=1.00
+stuffprice=2.00
+pantossprice=1.00
 #--------- Carryout or Delivery Prices -------
-deliveryprice=2
+deliveryprice=2.00
 #----------- Establishing prices for all of our Pizza Sizes ----------------
-small=3
-medium=5
-large=7
-big=9
+small=3.00
+medium=5.00
+large=7.00
+big=9.00
 #---------- Intro --------------
 echo "Welcome to Big Pizza! Home of the best pizza in the world!"
 sleep 3
 read -p "Who do we have the pleasure of serving today? >> " name
 sleep 3
-echo "Nice to meet you $name, let's get you started."
+echo "It is our pleasure to serve you $name, let's get you started."
 sleep 1 
-echo "$name our Big Pizza comes with these toppings."
+echo "$name our world famous Big Pizza comes with these toppings."
 #------------ List toppings for the world famous big pizza ------------------------
+counter=1
+toppings=(Pepperoni Sausage Beef Bacon Onions Banana_Peppers Green_Peppers Jalapenos Olives Mushrooms)
+echo "Here is the list of toppings for the Big Pizza."
+echo "----------------"
+for t in ${toppings[@]}
+do
+echo "$counter. $t"
+((counter++))
+done
+echo "---------"
+echo""
+ 
 echo "It also comes with extra cheese, and a cheese filled stuff crust!"
 read -p "Would you like to try our world famous Big Pizza? Please type yes or no. >> " answer
 
 if [[ $answer == yes ]] ; then
 echo "Alright let's review your order $name." 
 echo "Awesome, would you like delivery or carry out?"
-#--------- Continuing if statement for if they want the Big Pizza. 
+echo "Alright $name, you're almost done."
+read -p "Would you like your order for pickup or would you like it delivered? Please type pickup or delivery. >>  " order
+if [[ $order == pickup ]] ; then
+echo "Alright we will review your order to make sure it is correct. "
+tax=0.10
+total=$(($big + $tax))
+echo "So you are getting the world famous BIG pizza with extra cheese for a total of $total."
+else
+read -p "Please enter a delivery address " address
+echo "Alright that delivery address is $address. "
+total=$(($big + $tax + $deliveryprice)) 
+echo "So $name your total will be $($total)."
+fi
+
+read -p "Would you like to place your order $name? Please type yes or no. " answer
+if [[ $answer == yes ]] ; then
+echo "Alright $name your order will be ready in about 15 minutes. Hope you enjoy!" 
+else 
+echo "Alright."
+fi
+#---------- End of if for placing order --------------------
+read -p "Would you like to pay with cash or card? " pay
+if [[ $pay == card ]] ; then
+echo "Alright. Please enter your card information."
+read -p "Name on the card. "
+read -p "Card number. 12 digit "
+read -p "Security code, 3 digit code on the back of card. "
+echo "Alright, your order has been placed."
+else
+echo "Alright. Please have your cash ready!"
+fi
+
+#--------- End of if statement for if they want the Big Pizza. 
 
 #-------------- if they want to buid their own pizza -------------------
 else 
