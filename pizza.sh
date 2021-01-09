@@ -169,10 +169,14 @@ echo""
 echo "Please choose a number 1-3 for your cheese. >>" 
 read cheese
 case $cheese in
-1) echo "You chose Cheddar.";;
-2) echo "You chose Mozzarella.";;
-3) echo "You chose Feta.";;
-*) echo "We will just put you with mozzarella, the cheese of all pizzas!";; 
+1) echo "You chose Cheddar."
+$cheese == Cheddar;;
+2) echo "You chose Mozzarella."
+$cheese == Mozzarella;;
+3) echo "You chose Feta."
+$cheese == Feta;;
+*) echo "We will just put you with mozzarella, the cheese of all pizzas!"
+$cheese == Mozzarella;; 
 esac
 
 #------------ End of cheese case------------------
@@ -190,12 +194,15 @@ echo "$counter. $t"
 done
 echo "---------"
 echo""
-echo "Please choose a number 1-3 for your cheese. >>" 
+echo "Please choose a number 1-3 for your crust. >>" 
 read crust
 case $crust in
-1) echo "Alright, so a thin crust!";;
-2) echo "Alright, stuffed crust.";;
-3) echo "Alright original hand tossed. Nice choice";;
+1) echo "Alright, so a thin crust!"
+$crust == thin;;
+2) echo "Alright, stuffed crust."
+$crust == stuffed;;
+3) echo "Alright original hand tossed. Nice choice"
+$crust == Hand-tossed;;
 *) echo "Alright $name, we will put you down for our traditional crust.";; 
 esac
 #fi
@@ -203,7 +210,7 @@ esac
 #------------ Carry out or Delivery ---------
 echo "Alright $name, you're almost done."
 echo "Would you like your order for pickup or would you like it delivered? "
-read -p "Type pickup or delivery" order
+read -p "Type pickup or delivery >> " order
 if [[ $order == pickup ]] ; then
 echo "Let's review that order."
 echo "So $name that's a $pizzasize pizza with $top with $cheese cheese and a $crust crust."
