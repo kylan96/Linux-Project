@@ -18,6 +18,32 @@ medium=5.00
 large=7.00
 big=9.00
 #---------- Intro --------------
+# ------ BP Spinning Animation--------
+
+#for ((i=0;i<3;i++)); do
+#   printf "\r   |  "
+#   sleep 0.2
+#   printf "\r  ( )  "
+#   sleep 0.2
+#   printf "\r ( BP )"
+#   sleep 0.2
+#   printf "\r  ( )  "
+#   sleep 0.2
+#   printf "\r   |   "
+#   sleep 0.2
+#  printf  "\r  ( )  "
+#   sleep 0.2
+#   printf "\r( BP ) "
+#done
+
+#  if (( $RANDOM % 2 )); then
+#      printf "\r( BP )\n"
+#      computer_choice=1
+#   else
+#      printf "\r( PB )\n"
+#      computer_choice=2
+#   fi
+
 echo "Welcome to Big Pizza! Home of the best pizza in the world!"
 sleep 3
 read -p "Who do we have the pleasure of serving today? >> " name
