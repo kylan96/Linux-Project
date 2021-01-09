@@ -41,8 +41,7 @@ echo""
 echo "It also comes with extra cheese, and a cheese filled stuff crust!"
 read -p "Would you like to try our world famous Big Pizza? Please type yes or no. >> " answer
 
-if [[ $answer == yes ]] ; then
-echo "Awesome, would you like delivery or carry out?"
+if [[ $answer == y* ]] ; then
 echo "Alright $name, you're almost done."
 read -p "Would you like your order for pickup or would you like it delivered? Please type pickup or delivery. >>  " order
 if [[ $order == pickup ]] ; then
@@ -89,7 +88,7 @@ fi
 #--------- Remember to create another if statement for if they choose no ----------------
 echo "So that is a $pizzasize pizza. What would you like on it $name?"
 read -p "Would you like any meat or veggie toppings? Please type yes or no. " answer
-if [[ $answer == yes ]] ; then
+if [[ $answer == y* ]] ; then
 counter=1
 toppings=(Pepperoni Sausage Beef Bacon Onions Banana_Peppers Green_Peppers Jalapeno_Peppers Black_Olives Mushrooms)
 echo "Here is the list of toppings for your pizza."
@@ -201,7 +200,7 @@ fi
 
 #-------------end of carryout or pick up if------------------------
 read -p "Would you like to place your order $name? Please type yes or no. " answer
-if [[ $answer == yes ]] ; then
+if [[ $answer == y* ]] ; then
 echo "Alright $name your order will be ready in about 15 minutes. Hope you enjoy!" 
 else 
 echo "Alright."
