@@ -2,7 +2,10 @@
 clear
 
 # Creators: Kylan Roberts, Joe Mitchell, Rachid, Byron Davis
-
+#----- More animations------
+#sudo apt-get install boxes
+#sudo apt-get install figlet
+#sudo apt-get install cowsay
 #--------- List of Topping ------------
 #------ List of Cheese Toppings ----------
 #cheddar
@@ -19,6 +22,8 @@ large=7.00
 big=9.00
 #---------- Intro --------------
 # ------ BP Spinning Animation--------
+tput bold
+tput setaf 6
 for ((i=0;i<3;i++)); do
 printf "\r   |  "
 sleep 0.2
@@ -39,13 +44,17 @@ if (( $RANDOM % 2 )); then
 printf "\r( BP )\n"
 computer_choice=1
 else
-printf "\r( PB )\n"
+printf "\r( BP )\n"
 computer_choice=2
 fi
-
-echo "Welcome to Big Pizza! Home of the best pizza in the world!"
+#----- reset with tput sgr0 --------------
+tput sgr0
+tput setaf 6
+echo "Welcome to Big Pizza! Home of the best pizza in the world!" | boxes -d boy
+tput sgr0
 sleep 3
-read -p "Who do we have the pleasure of serving today? >> " name
+echo  "Who do we have the pleasure of serving today? >> "
+read name
 sleep 3
 echo "It is our pleasure to serve you $name, let's get you started."
 sleep 1 
@@ -73,7 +82,34 @@ if [[ $order == pickup ]] ; then
 echo "Alright we will review your order to make sure it is correct. "
 echo "So you are getting the world famous BIG pizza with extra cheese for a total of..."
 subtotal=19.00
-sleep 2
+#--------------Enter BP Animation
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
+
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr0
+#----------Payment Calculation--------------
 printf "$"; echo "scale=2; 10/100*$subtotal+$subtotal" | bc -l
 echo ""
 echo "-----" 
@@ -82,12 +118,39 @@ read -p "Please enter a delivery address " address
 echo "Alright that delivery address is $address. >> "
 echo "So $name your total will be...."
 subtotal=19.00
-sleep 2
+#--------------Enter BP Animation
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
+
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr0
+#------- Payment calculation for delivery on our Special --------
 printf "$"; echo "scale=2; 10/100*$subtotal+$subtotal+$deliveryprice" | bc -l
 fi
 
 read -p "$name would you like to place your order? >> " answer
-if [[ $answer == yes ]] ; then
+if [[ $answer == y* ]] ; then
 echo "Alright $name your order will be ready in about 15 minutes. Hope you enjoy!"
 else
 echo "Alright, please create your own pizza."
@@ -98,13 +161,13 @@ fi
 else 
 echo "No problem $name. Let's get started creating your pizza. First you'll choose a size."
 read -p "Please type small, medium, large, or big. >> " pizzasize
-if [[ $pizzasize == small ]]; then
+if [[ $pizzasize == sm* ]]; then
 subtotal=3.00
-elif [[ $pizzasize == medium ]]; then
+elif [[ $pizzasize == me* ]]; then
 subtotal=5.00
-elif [[ $pizzasize == large ]]; then
+elif [[ $pizzasize == la* ]]; then
 subtotal=7.00
-elif [[ $pizzasize == big ]]; then
+elif [[ $pizzasize == b* ]]; then
 subtotal=9.00
 else 
 subtotal=5.00
@@ -128,19 +191,19 @@ echo""
 read -p "How many toppings would you like? >> " selection
 if [ $selection -eq 1 ] ; then
 read -p "Please type the topping you would like on your pizza. " top
-echo "Awesome so you want $top on your pizza for $onetop."
+echo "Awesome so you want $top on your pizza."
 topprice=0.25
 elif [ $selection -eq 2 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
-echo "Awesome so you want $top on your pizza for $twotop."
+echo "Awesome so you want $top on your pizza."
 topprice=0.50
 elif [ $selection -eq 3 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
-echo "Awesome so you want $top on your pizza for $threetop."
+echo "Awesome so you want $top on your pizza."
 topprice=0.75
 elif [ $selection -eq 4 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
-echo "Awesome so you want $top on your pizza for $fourtop."
+echo "Awesome so you want $top on your pizza."
 topprice=1.00
 elif [ $selection -ge 5 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
@@ -152,7 +215,33 @@ echo "Alright $name let's move on."
 topprice=0.00
 fi
 #---------- end of toppings if statement ---------------
+#---------- Enter BP Animation
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
 
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr0
 #---------- end of topping selection if --------------------
 echo "Now let's choose some cheeses."
 counter=1
@@ -167,19 +256,46 @@ done
 echo "---------"
 echo""
 echo "Please choose a number 1-3 for your cheese. >>" 
-read cheese
-case $cheese in
+read n
+case $n in
 1) echo "You chose Cheddar."
-$cheese == Cheddar;;
+cheese=(Cheddar);;
 2) echo "You chose Mozzarella."
-$cheese == Mozzarella;;
+cheese=(Mozzarella);;
 3) echo "You chose Feta."
-$cheese == Feta;;
+cheese=(Feta);;
 *) echo "We will just put you with mozzarella, the cheese of all pizzas!"
-$cheese == Mozzarella;; 
+cheese=(Mozzarella);; 
 esac
 
 #------------ End of cheese case------------------
+#------------ Enter BP Animation-----------
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
+
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr0
 #------------ Crust Options if statement-----------------
 echo "Alright $name last thing. Crust options!!"
 echo "Here are our different crusts."
@@ -195,27 +311,79 @@ done
 echo "---------"
 echo""
 echo "Please choose a number 1-3 for your crust. >>" 
-read crust
-case $crust in
+read r
+case $r in
 1) echo "Alright, so a thin crust!"
-$crust == thin;;
+crust=(thin);;
 2) echo "Alright, stuffed crust."
-$crust == stuffed;;
+crust=(stuffed);;
 3) echo "Alright original hand tossed. Nice choice"
-$crust == Hand-tossed;;
+crust=(Hand_tossed);;
 *) echo "Alright $name, we will put you down for our traditional crust.";; 
 esac
 #fi
- 
+#------------ Entering BP animation ---------
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
+
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr0 
 #------------ Carry out or Delivery ---------
 echo "Alright $name, you're almost done."
 echo "Would you like your order for pickup or would you like it delivered? "
 read -p "Type pickup or delivery >> " order
-if [[ $order == pickup ]] ; then
+if [[ $order == pi* ]] ; then
 echo "Let's review that order."
 echo "So $name that's a $pizzasize pizza with $top with $cheese cheese and a $crust crust."
 echo "Your total will be....."
-sleep 2
+#----------- Entering BP animation for total ----------------
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
+
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr 0
 printf "$"; echo "scale=2; 10/100*$subtotal+$subtotal+$topprice" | bc -l
 echo ""
 echo "-----" 
@@ -224,6 +392,33 @@ read -p "Please enter a delivery address >> " address
 echo "Alright that delivery address is $address. "
 echo "So $name that's a $pizzasize pizza with $top with $cheese cheese and a $crust crust."
 echo "Your total will be...."
+#---------- Entering BP animation for total ------------------
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
+
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr 0
 printf "$"; echo "scale=2; 10/100*$subtotal+$topprice+$subtotal+$deliveryprice" | bc -l
 echo ""
 echo "-----" 
@@ -233,6 +428,34 @@ fi
 #-------------end of carryout or pick up if------------------------
 read -p "Would you like to place your order $name? Please type yes or no. " answer
 if [[ $answer == y* ]] ; then
+#------- Enter BP Animation (loading for order placement)
+tput bold
+tput setaf 6
+for ((i=0;i<3;i++)); do
+printf "\r   |  "
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r ( BP )"
+sleep 0.2
+printf "\r  ( )  "
+sleep 0.2
+printf "\r   |   "
+sleep 0.2
+printf  "\r  ( )  "
+sleep 0.2
+printf "\r( BP ) "
+done
+
+if (( $RANDOM % 2 )); then
+printf "\r( BP )\n"
+computer_choice=1
+else
+printf "\r( BP )\n"
+computer_choice=2
+fi
+tput sgr0
+
 echo "Alright $name your order will be ready in about 15 minutes. Hope you enjoy!" 
 else 
 echo "Alright."
