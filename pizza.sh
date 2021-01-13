@@ -49,10 +49,8 @@ computer_choice=2
 fi
 #----- reset with tput sgr0 --------------
 tput sgr0
-tput setaf 6
-echo "Welcome to Big Pizza! Home of the best pizza in the world!" | boxes -d boy
-tput sgr0
 sleep 3
+echo "Welcome to Big Pizza!" 
 echo  "Who do we have the pleasure of serving today? >> "
 read name
 sleep 3
@@ -188,6 +186,7 @@ echo "$counter. $t"
 done
 echo "---------"
 echo""
+echo "Please choose from our selection $name."
 read -p "How many toppings would you like? >> " selection
 if [ $selection -eq 1 ] ; then
 read -p "Please type the topping you would like on your pizza. " top
