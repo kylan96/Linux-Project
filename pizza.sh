@@ -50,7 +50,10 @@ fi
 #----- reset with tput sgr0 --------------
 tput sgr0
 sleep 3
+tput bold
+tput blink
 echo "Welcome to Big Pizza!" 
+tput sgr0
 echo  "Who do we have the pleasure of serving today? >> "
 read name
 sleep 3
@@ -62,11 +65,14 @@ counter=1
 toppings=(Pepperoni Sausage Beef Bacon Onions Banana_Peppers Green_Peppers Jalapenos Olives Mushrooms)
 echo "Here is the list of toppings for the Big Pizza."
 echo "----------------"
+tput bold
+tput setaf 2 
 for t in ${toppings[@]}
 do
 echo "$counter. $t"
 ((counter++))
 done
+tput sgr0
 echo "---------"
 echo""
  
@@ -79,7 +85,7 @@ read -p "Would you like your order for pickup or would you like it delivered? Pl
 if [[ $order == pickup ]] ; then
 echo "Alright we will review your order to make sure it is correct. "
 echo "So you are getting the world famous BIG pizza with extra cheese for a total of..."
-subtotal=19.00
+subtotal=24.00
 #--------------Enter BP Animation
 tput bold
 tput setaf 6
@@ -108,14 +114,16 @@ computer_choice=2
 fi
 tput sgr0
 #----------Payment Calculation--------------
+tput bold
 printf "$"; echo "scale=2; 10/100*$subtotal+$subtotal" | bc -l
+tput sgr0
 echo ""
 echo "-----" 
 else
 read -p "Please enter a delivery address " address
 echo "Alright that delivery address is $address. >> "
 echo "So $name your total will be...."
-subtotal=19.00
+subtotal=24.00
 #--------------Enter BP Animation
 tput bold
 tput setaf 6
@@ -144,7 +152,9 @@ computer_choice=2
 fi
 tput sgr0
 #------- Payment calculation for delivery on our Special --------
+tput bold
 printf "$"; echo "scale=2; 10/100*$subtotal+$subtotal+$deliveryprice" | bc -l
+tput sgr0
 fi
 
 read -p "$name would you like to place your order? >> " answer
@@ -179,11 +189,14 @@ counter=1
 toppings=(Pepperoni Sausage Beef Bacon Onions Banana_Peppers Green_Peppers Jalapeno_Peppers Black_Olives Mushrooms)
 echo "Here is the list of toppings for your pizza."
 echo "----------------"
+tput bold
+tput setaf 2
 for t in ${toppings[@]}
 do
 echo "$counter. $t"
 ((counter++))
 done
+tput sgr0
 echo "---------"
 echo""
 echo "Please choose from our selection $name."
@@ -206,7 +219,6 @@ echo "Awesome so you want $top on your pizza."
 topprice=1.00
 elif [ $selection -ge 5 ] ; then
 read -p "Please type the toppings you would like on your pizza. " top
-echo "Awesome so you want all of these toppings on your pizza."
 topprice=1.25
 fi
 else 
@@ -247,11 +259,14 @@ counter=1
 cheeseoptions=(Cheddar Mozzarella Feta)
 echo "Here is the list of cheese options for your pizza."
 echo "----------------"
+tput bold
+tput setaf 1
 for t in ${cheeseoptions[@]}
 do
 echo "$counter. $t"
 ((counter++))
 done
+tput sgr0
 echo "---------"
 echo""
 echo "Please choose a number 1-3 for your cheese. >>" 
@@ -301,12 +316,15 @@ echo "Here are our different crusts."
 crustoptions=(Thin Stuffed Hand_Tossed)
 echo "Here is the list of crust options for your pizza."
 echo "----------------"
+tput bold
+tput setaf 1
 counter=1
 for t in ${crustoptions[@]}
 do
 echo "$counter. $t"
 ((counter++))
 done
+tput sgr0
 echo "---------"
 echo""
 echo "Please choose a number 1-3 for your crust. >>" 
@@ -382,8 +400,10 @@ else
 printf "\r( BP )\n"
 computer_choice=2
 fi
-tput sgr 0
+tput sgr0
+tput bold
 printf "$"; echo "scale=2; 10/100*$subtotal+$subtotal+$topprice" | bc -l
+tput sgr0
 echo ""
 echo "-----" 
 else
@@ -417,9 +437,11 @@ else
 printf "\r( BP )\n"
 computer_choice=2
 fi
-tput sgr 0
+tput sgr0
+tput bold
 printf "$"; echo "scale=2; 10/100*$subtotal+$topprice+$subtotal+$deliveryprice" | bc -l
-echo ""
+tput sgr
+0echo ""
 echo "-----" 
 fi
 
